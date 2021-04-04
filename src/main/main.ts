@@ -5,6 +5,7 @@ import path from "path";
 import { Connection, createConnection } from 'mongoose';
 import { Client } from '../types/Types';
 import { ObjectId } from 'mongodb';
+import log from 'electron-log';
 import { autoUpdater } from 'electron-updater';
 import appInfo from '../../package.json';
 
@@ -272,14 +273,7 @@ app.on("ready", async () => {
 }
 );
 
-ipcMain.on('app_version', (event) => {
-  const title = document.getElementById('title');
-  ipcRenderer.removeAllListeners('app_version');
-  if (title) {
-    title.innerText = 'Consulta Detran ' + appInfo.version;
-  }
-  event.sender.send('app_version', { version: app.getVersion() });
-})
+
 
 // Quit when all windows are closed.
 app.on("window-all-closed", () => {
@@ -306,16 +300,41 @@ function addReactDevTools(ses: Session) {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
 
-autoUpdater.on('update-available', () => {
+ipcMain.on('app_version', (event) => {
+  const title = document.getElementById('title');
+  ipcRenderer.removeAllListeners('app_version');
+  if (title) {
+    title.innerText = 'Consulta Detran ' + appInfo.version;
+  }
+  event.sender.send('app_version', { version: app.getVersion() });
+})
+
+autoUpdater.on('update_available', () => {
+  autoUpdater.downloadUpdate()
   mainWindow?.webContents.send('update_available');
 });
 
-autoUpdater.on('update-downloaded', () => {
+autoUpdater.on('update_downloaded', () => {
   mainWindow?.webContents.send('update_downloaded');
 });
 
 ipcMain.on('restart_app', () => {
   autoUpdater.quitAndInstall();
+});
+
+autoUpdater.on("download_progress", progressObj => {
+	log.info("Tracking progress");
+	var log_message = "Download speed: " + progressObj.bytesPerSecond;
+	log_message = log_message + " - Downloaded " + progressObj.percent + "%";
+	log_message =
+		log_message +
+		" (" +
+		progressObj.transferred +
+		"/" +
+		progressObj.total +
+		")";
+	log.info(log_message);
+	mainWindow?.webContents.send("download_progress", log_message);
 });
 
 function Uint8ArrayToHexString(uint8: ArrayBuffer) {

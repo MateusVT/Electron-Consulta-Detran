@@ -34,32 +34,39 @@
     </button>
   </div>
   <div id="app"></div>
-  
+
   <script>
 
+    const log = require("electron-log");
     const { ipcRenderer } = require('electron');
 
-    // const version = document.getElementById('version');
-
-    // ipcRenderer.send('app_version');
-    // ipcRenderer.on('app_version', (event, arg) => {
-    //   ipcRenderer.removeAllListeners('app_version');
-    //   version.innerText = 'Version ' + arg.version;
-    // });
-
-    // -----------------------------------------------------------------
-
+    const version = document.getElementById('version');
     const notification = document.getElementById('notification');
     const message = document.getElementById('message');
     const restartButton = document.getElementById('restart-button');
 
+    ipcRenderer.on('app_version', (event, arg) => {
+      log.info('ipcRenderer on app_version')
+      ipcRenderer.removeAllListeners('app_version');
+      version.innerText = 'Version ' + arg.version;
+    });
+
     ipcRenderer.on('update_available', () => {
+      log.info('ipcRenderer on update_available')
       ipcRenderer.removeAllListeners('update_available');
       message.innerText = 'Uma nova atualização esta disponível. Atualizando agora...';
       notification.classList.remove('hidden');
     });
 
+    ipcRenderer.on('download_progress', (progress_message) => {
+      log.info('ipcRenderer on download_progress')
+      ipcRenderer.removeAllListeners('update_available');
+      message.innerText = progress_message;
+      notification.classList.remove('hidden');
+    });
+
     ipcRenderer.on('update_downloaded', () => {
+      log.info('ipcRenderer on update_downloaded')
       ipcRenderer.removeAllListeners('update_downloaded');
       message.innerText = 'Atualização realizada. Será instalada na reinicialização. Reiniciar agora?';
       restartButton.classList.remove('hidden');
