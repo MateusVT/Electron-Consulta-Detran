@@ -196,7 +196,7 @@ const Runner = () => {
                 </>
                 }
                 {clients.length == 0 && <Row>
-                    <Col style={{ textAlign: "center" }}>
+                    <Col xs={12} style={{ textAlign: "center" }}>
                         <Label>Nenhum cliente cadastrado!</Label>
                     </Col>
                 </Row>}

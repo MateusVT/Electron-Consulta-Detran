@@ -15,7 +15,7 @@ const Menu = () => {
     return (<>
         <Button outline size="sm" style={{ margin: "5px" }} onClick={() => { history.push("*") }}>Sair</Button>
         <div className="centerHV">
-            <Label style={{ fontSize: "18px" }}>{`Seja Bem-Vindo ${context.user?.name}`}</Label>
+            <Label style={{ fontSize: "18px" }}>{`Seja Bem-Vindo`}</Label>
             <Label style={{ fontSize: "18px" }}>{`${context.user?.name}`}</Label>
             <br />
             <ButtonGroup vertical >
