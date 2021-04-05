@@ -24,9 +24,8 @@ const InfosCollapser = ({ client }: { client: Client }) => {
 
     const handleDateColor = (date: string) => {
         const dateDiffFromNow = Math.ceil(loadMoment(date, "DD/MM/YYYY").diff(nowLocale(), "days", true))
-        console.log(date)
-        console.log(dateDiffFromNow)
-        if (dateDiffFromNow > 10) {
+
+        if (dateDiffFromNow >= 10) {
             return "green"
         }
         else if (dateDiffFromNow >= 4 && dateDiffFromNow <= 9) {
@@ -59,16 +58,22 @@ const InfosCollapser = ({ client }: { client: Client }) => {
             <Button size="sm" style={{ width: "150px", marginLeft: "5px" }} disabled={client.detranInfos == undefined || (client.detranInfos.infractions == undefined || client.detranInfos.infractions.length == 0)} onClick={handleClickOpenInfractions} color="primary">{openInfractions ? "Ocultar Infrações" : "Exibir Infrações"}</Button>
 
             <Collapse in={openInfos} timeout="auto" style={{ marginTop: "4px" }} key={"infoCollapser"} unmountOnExit>
+
+                <span style={{ marginRight: "10px" }}>
+                    <b>CPF: </b>
+                    {client.cpf}
+                </span>
+
                 <span>
-                    <b>Última Atualização: </b>
-                    {client.detranInfos?.updatedAt || "Não Registrado"}
+                    <b>RG: </b>
+                    {client.cnh}
                 </span>
 
                 <br />
 
                 <span style={{ marginRight: "10px" }}>
-                    <b>CPF: </b>
-                    {client.cpf}
+                    <b>Validade CNH: </b>
+                    {client.validadeCnh}
                 </span>
 
                 <span>
@@ -83,12 +88,13 @@ const InfosCollapser = ({ client }: { client: Client }) => {
                     {client.detranInfos?.cnhSituation || "Não Registrado"}
                 </span>
 
+                <br />
+
                 <span style={{ maxWidth: "50%" }}>
                     <b>Fiscalização: </b>
                     {client.detranInfos?.cnhOversight || "Não Registrado"}
                 </span>
 
-                <br />
             </Collapse>
 
             <Collapse in={openInfractions} timeout="auto" style={{ marginTop: "4px" }} key={"infractionCollapser"} unmountOnExit>

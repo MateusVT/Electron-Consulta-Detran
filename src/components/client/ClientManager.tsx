@@ -63,7 +63,8 @@ const ClientManager = () => {
         if (infractions && infractions?.length > 0) {
             const dates: number[] = infractions.map(infraction => {
                 return Math.ceil(loadMoment(infraction.infraction_deadline, "DD/MM/YYYY").diff(nowLocale(), "days", true))
-            }).filter(number => number > 0)
+            }).filter(number => number >= 0)
+
 
             if (dates.length > 0) {
                 const closestDate = Math.min(...dates)
@@ -94,6 +95,11 @@ const ClientManager = () => {
                                 style={{ fontWeight: "bold" }}
                                 primary={<div>
                                     <span style={{ fontSize: "15px", fontWeight: "bold" }}>{(index + 1) + " - " + client.name}</span>
+                                    <br />
+                                    <span style={{ fontSize: "13px", fontWeight: "lighter" }}>
+                                        <b>Última Atualização: </b>
+                                        {client.detranInfos?.updatedAt || "Não Registrado"}
+                                    </span>
                                     {handleInfoIcon(client)}
                                 </div>}
                                 primaryTypographyProps={{ component: "div", style: { fontWeight: "bold" } }}
