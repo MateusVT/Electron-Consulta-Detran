@@ -1,0 +1,39 @@
+body {
+  background-color: whitesmoke;
+}
+
+.frame {
+  background: rgb(24, 80, 41);
+  justify-content: center;
+  width: "50%";
+  display: flex;
+}
+
+.mainFrame {
+  position: relative;
+}
+
+.screen {
+  width: 300px;
+  height: 100px;
+  padding: 20px;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  margin: -70px 0 0 -170px;
+}
+
+
+.centerHV {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+  margin: 10% 0;
+  min-height: 330px;
+  align-items: center;
+}

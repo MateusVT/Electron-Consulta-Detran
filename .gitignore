@@ -1,0 +1,9 @@
+.vscode
+node_modules
+out
+lib
+electron-builder.yml
+dist
+package-lock.json
+.env
+# .webpack
