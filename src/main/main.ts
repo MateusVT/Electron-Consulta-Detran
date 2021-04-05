@@ -72,8 +72,6 @@ ipcMain.handle('extrato', async (event, ...args) => {
   const [argsDestructor] = args
   const cookie = argsDestructor.cookies.split(";")[0]
 
-  console.log(cookie)
-
   const response = await axios({
     method: "POST",
     url: URL_EXTRATO,
@@ -91,8 +89,6 @@ ipcMain.handle('extrato', async (event, ...args) => {
     }
   })
 
-
-  console.log(response)
   return { cookie: "response.headers['set-cookie'][0]", data: "response.data " }
   // return { cookie: response.headers['set-cookie'][0], data: response.data }
 

@@ -96,15 +96,14 @@ const Runner = () => {
         }
     }
 
-
     const handleCounterBackward = () => {
-        console.log(counter)
         if (counter == 0) {
             setCounter(clients.length - 1)
         } else {
             setCounter(counter - 1)
         }
     }
+
     const handleExecute = async () => {
         setProcessing(true)
         const cnhData: DetranInfos | null = await doLogin()
