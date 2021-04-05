@@ -1,7 +1,7 @@
 {
   "name": "consulta-detran-electron",
   "productName": "Consulta Detran",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Aplicação para automatizar processo de consulta a dados de CNH no Detran.",
   "repository": {
     "type": "git",
