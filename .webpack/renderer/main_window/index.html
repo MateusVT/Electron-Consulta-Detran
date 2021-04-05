@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <meta charset="utf-8" />
-  <title id="title"></title>
-  <style type="text/css">
-    #notification {
+<!doctype html><html><head><meta charset="utf-8"/><title id="title"></title><style>#notification {
       position: fixed;
       bottom: 20px;
       right: 20px;
@@ -17,27 +10,7 @@
 
     .hidden {
       display: none;
-    }
-  </style>
-</head>
-
-<body style="overflow: hidden;">
-  <p id="version" class="hidden"></p>
-  <div id="notification" class="hidden">
-    <p id="message"></p>
-    <button id="close-button" class="btn btn-outline-dark btn-sm" style="width: 100px;" onClick="closeNotification()">
-      Fechar
-    </button>
-    <button id="restart-button" class="btn btn-outline-success btn-sm" style="width: 100px;" onClick="restartApp()"
-      class="hidden">
-      Reiniciar
-    </button>
-  </div>
-  <div id="app"></div>
-
-  <script>
-
-    const log = require("electron-log");
+    }</style></head><body style="overflow: hidden;"><p id="version" class="hidden"></p><div id="notification" class="hidden"><p id="message"></p><button id="close-button" class="btn btn-outline-dark btn-sm" style="width: 100px;" onclick="closeNotification()">Fechar</button> <button id="restart-button" class="btn btn-outline-success btn-sm" style="width: 100px;" onclick="restartApp()" class="hidden">Reiniciar</button></div><div id="app"></div><script>const log = require("electron-log");
     const { ipcRenderer } = require('electron');
 
     const version = document.getElementById('version');
@@ -78,11 +51,4 @@
     }
     function restartApp() {
       ipcRenderer.send('restart_app');
-    }
-
-
-
-  </script>
-<script src="/main_window/index.js"></script></body>
-
-</html>
+    }</script><script src="../main_window/index.js"></script></body></html>
