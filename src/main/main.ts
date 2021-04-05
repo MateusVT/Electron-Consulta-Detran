@@ -214,7 +214,7 @@ async function createWindow() {
     }
   });
   // mainWindow.setIcon(path.join('./public/logo.png'));
-  mainWindow.removeMenu()
+  // mainWindow.removeMenu()
   // mainWindow.loadFile('index.html');
 
   /** Manage browser sessions, cookies, cache, proxy settings, etc */
