@@ -209,33 +209,13 @@ async function createWindow() {
       contextIsolation: false
     }
   });
-  // mainWindow.setIcon(path.join('./public/logo.png'));
-  // mainWindow.removeMenu()
-  // mainWindow.loadFile('index.html');
 
   /** Manage browser sessions, cookies, cache, proxy settings, etc */
   const ses = mainWindow.webContents.session;
 
   /**add chrome dev tools */
   addReactDevTools(ses);
-
-  // and load the index.html of the app.
-  // mainWindow.loadURL(url.format({
-  //   pathname: path.join(__dirname, 'dist/index.html'),
-  //   protocol: "file",
-  //   slashes: "true"
-  // }))
-  // mainWindow.loadURL(`file://${__dirname}/build/index.html`);
-
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
-  // mainWindow.loadURL(path.join('./public/index.html'));
-  // mainWindow.webContents.loadFile('./public/index.html');
-  // mainWindow.loadURL(url.format({
-  //   pathname: path.join(__dirname, 'index.html'),
-  //   protocol: 'file',
-  //   slashes: true
-  // }));
-  // mainWindow.loadURL(isDev ? "http://localhost:3000 : `file://${__dirname}/../build/index.html`);
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools();

@@ -6,4 +6,4 @@ electron-builder.yml
 dist
 package-lock.json
 .env
-.webpack
+# .webpack
